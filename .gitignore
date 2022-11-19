@@ -1,2 +1,5 @@
 task/
 .DS_store
+
+# python
+**/*/__pycache__
