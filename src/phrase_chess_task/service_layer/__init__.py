@@ -7,11 +7,10 @@ import functools
 from typing import Literal
 
 from phrase_chess_task import logging
-
-from .solver import bishop, knight, queen, rook
+from phrase_chess_task.service_layer.solver import solve_bishop, solve_knight, solve_queen, solve_rook
 
 log = logging.getLogger("phrase_chess_task.service_layer.solver")
-solver_map = {"knight": knight, "bishop": bishop, "rook": rook, "queen": queen}
+solvers = {"knight": solve_knight, "bishop": solve_bishop, "rook": solve_rook, "queen": solve_queen}
 
 
 @functools.lru_cache
@@ -22,4 +21,4 @@ def solve(board_size: int, chess_piece_type: Literal["knight", "bishop", "rook",
     :param board_size: the size of a board and as well a number of chess piece figures
     :return: the total number of ways `chess_piece_type` can be placed without attacking each other
     """
-    return solver_map[chess_piece_type][board_size - 1]
+    return solvers[chess_piece_type](board_size)
