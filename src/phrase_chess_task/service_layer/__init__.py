@@ -17,7 +17,7 @@ solvers = {"knight": solve_knight, "bishop": solve_bishop, "rook": solve_rook, "
 def solve(board_size: int, chess_piece_type: Literal["knight", "bishop", "rook", "queen"]) -> int:
     """
     Accepts a board size and type of a chess piece and returns the total number of ways they can
-    be placed on a board without attacing each other.
+    be placed on a board without attacking each other.
     :param board_size: the size of a board and as well a number of chess piece figures
     :return: the total number of ways `chess_piece_type` can be placed without attacking each other
     """

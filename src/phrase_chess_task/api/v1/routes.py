@@ -27,8 +27,8 @@ api: Blueprint = Blueprint("v1", __name__)
 def solve(valid_request: dict[str, Any]) -> Response:
     """
     Solves the chess problem.
-    :return: the total numnber of ways `n` given chess pieces `chessPiece` can be placed on a board
-    of size `n x n` can be placed without attacking each other
+    :return: the total number of ways `n` given chess pieces `chessPiece` can be placed on a board
+    of size `n x n` without attacking each other
     """
     chess_board_size = valid_request["n"]
     chess_piece_type = valid_request["chessPiece"]

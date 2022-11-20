@@ -3,6 +3,7 @@ import time
 
 from phrase_chess_task.service_layer import solve
 
+# http://oeis.org/A201540
 knights_data = [
     (1, 1),
     (2, 6),
@@ -10,7 +11,7 @@ knights_data = [
     (4, 412),
     (5, 9386),
     (6, 257318),
-    # TODO: optimize the solution for 7x7 and 8x8 chessboard, currently CSP isn't able to solve it in a reasonable time
+    # TODO: optimize the solution for 7x7 and 8x8 chessboard, currently CSP isn't able to solve it in reasonable time
     # (7, 8891854),
     # (8, 379978716),
 ]
@@ -53,11 +54,11 @@ queens_data = [
 
 
 @pytest.mark.parametrize("board_size, expected_number_of_ways", knights_data)
-def test_solver_correctly_solves_knights(board_size: int, expected_number_of_ways: int):
+def test_solver_correctly_solves_knights(board_size: int, expected_number_of_ways: int) -> None:
     assert expected_number_of_ways == solve(board_size, "knight")
 
 
-def test_solver_knights_cache_speeds_up_calculation():
+def test_solver_knights_cache_speeds_up_calculation() -> None:
     solve(6, "knight")
     time_start = time.time()
     solve(6, "knight")
@@ -66,15 +67,15 @@ def test_solver_knights_cache_speeds_up_calculation():
 
 
 @pytest.mark.parametrize("board_size, expected_number_of_ways", bishops_data)
-def test_solver_correctly_solves_bishops(board_size: int, expected_number_of_ways: int):
+def test_solver_correctly_solves_bishops(board_size: int, expected_number_of_ways: int) -> None:
     assert expected_number_of_ways == solve(board_size, "bishop")
 
 
 @pytest.mark.parametrize("board_size, expected_number_of_ways", rooks_data)
-def test_solver_correctly_solves_rooks(board_size: int, expected_number_of_ways: int):
+def test_solver_correctly_solves_rooks(board_size: int, expected_number_of_ways: int) -> None:
     assert expected_number_of_ways == solve(board_size, "rook")
 
 
 @pytest.mark.parametrize("board_size, expected_number_of_ways", queens_data)
-def test_solver_correctly_solves_queens(board_size: int, expected_number_of_ways: int):
+def test_solver_correctly_solves_queens(board_size: int, expected_number_of_ways: int) -> None:
     assert expected_number_of_ways == solve(board_size, "queen")

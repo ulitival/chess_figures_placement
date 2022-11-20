@@ -8,7 +8,7 @@ def test_solve_endpoint_correctly_calucate_8_queens(client: FlaskClient) -> None
     assert resp.status_code == HTTPStatus.OK
     resp_body = resp.json
     assert "solutionsCount" in resp_body
-    assert 92 == resp_body["solutionsCount"]
+    assert 92 == resp_body["solutionsCount"]  # the number 92 is based on the following data http://oeis.org/A000170
 
 
 def test_solve_endpoint_invalid_chessboard_field(client: FlaskClient) -> None:

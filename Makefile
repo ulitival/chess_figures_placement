@@ -26,7 +26,6 @@ check: test mypy lint
 
 build:
 	poetry build
-	poetry export -f requirements.txt --output requirements.txt --without-hashes
 
 clean:
 	rm -rf .mypy_cache .pytest_cache tests/*.xml .coverage sonar-result dist requirements.txt
