@@ -1,6 +1,6 @@
 :Authors:
     Valerii Ulitin
-:Version: 1.0 of 2022/11/20
+:Version: 1.1.0 of 2022/11/20
 
 Chess figures placement aka N-knights, N-bishops, N-rooks, N-queens problem.
 ============================================================================

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "phrase_chess_task"
-version = "1.0.0"
+version = "1.1.0"
 description = ""
 authors = ["Valerii Ulitin <valerii.ulitin@merck.com>"]
 
