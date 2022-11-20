@@ -1,9 +1,58 @@
 # task related
 task/
 
-# OS + VScode
-.DS_store
+### MAC OS X
+**/*.DS_store
+
+### IDE specific
+.idea
 .vscode
 
-# python
-**/*/__pycache__
+### Python template
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Environments
+.venv
+venv/
+
+# Unit test / coverage reports
+.coverage
+.coverage.*
+.cache
+coverage.xml
+.pytest_cache/
+sonar-result
+results.xml
+
+# mypy
+.mypy_cache/
+mypy.xml
+.dmypy.json
+dmypy.json
