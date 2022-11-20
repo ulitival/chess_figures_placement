@@ -9,3 +9,17 @@ def test_solve_endpoint_correctly_calucate_8_queens(client: FlaskClient) -> None
     resp_body = resp.json
     assert "solutionsCount" in resp_body
     assert 92 == resp_body["solutionsCount"]
+
+
+def test_solve_endpoint_invalid_chessboard_field(client: FlaskClient) -> None:
+    resp_body = client.post("/solve", json={"n": 0, "chessPiece": "queen"}).json
+    assert resp_body.get("code") == HTTPStatus.NOT_ACCEPTABLE
+    assert resp_body.get("name").lower() == HTTPStatus.NOT_ACCEPTABLE.phrase.lower()
+    assert resp_body.get("description") == "value must be at least 1 for dictionary value @ data['n']"
+
+
+def test_solve_endpoint_unsupported_chess_piece(client: FlaskClient) -> None:
+    resp_body = client.post("/solve", json={"n": 3, "chessPiece": "king"}).json
+    assert resp_body.get("code") == HTTPStatus.NOT_ACCEPTABLE
+    assert resp_body.get("name").lower() == HTTPStatus.NOT_ACCEPTABLE.phrase.lower()
+    assert resp_body.get("description") == "value must be one of ['bishop', 'knight', 'queen', 'rook'] for dictionary value @ data['chessPiece']"
