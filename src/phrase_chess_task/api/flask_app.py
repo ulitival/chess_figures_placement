@@ -25,6 +25,6 @@ app.register_blueprint(api_v1, name="latest")
 def error_handler(ex: HTTPException) -> Response:
     """Return JSON instead of HTML for HTTP errors."""
     data = {"code": ex.code, "name": ex.name, "description": ex.description}
-    log.warning(f"There was an exception during a request processing: {data}")
+    log.warning(f"There was an exception during a request processing: {data}")  # pylint: disable=logging-fstring-interpolation
 
     return Response(jsonify(indent=4, sort_keys=True, obj=data), ex.code, mimetype=mimetypes.types_map.get(".json"))

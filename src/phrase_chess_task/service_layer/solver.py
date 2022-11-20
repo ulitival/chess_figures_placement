@@ -1,7 +1,7 @@
 """
 The module conists of solvers for the chess task.
 Bishop's and rook's solver use a standardised formulas that were discovered by Vaclas Kotesovec et al.
-The methematicals formulas can be found in "Non-attacking chess pieces book 6ed" here:
+The mathematicals formulas can be found in "Non-attacking chess pieces book 6ed" here:
     http://www.kotesovec.cz/books/kotesovec_non_attacking_chess_pieces_2013_6ed.pdf
 The queen's and knight's solver in using CSP approach (CP-SAT) as there isn't a known mathematical formula for that.
 """
@@ -22,10 +22,10 @@ class _ORToolsSolutionPrinter(cp_model.CpSolverSolutionCallback):
         cp_model.CpSolverSolutionCallback.__init__(self)
         self.__solution_count = 0
 
-    def solution_count(self):
+    def solution_count(self):  # pylint: disable=missing-function-docstring
         return self.__solution_count
 
-    def on_solution_callback(self):
+    def on_solution_callback(self):  # pylint: disable=missing-function-docstring
         self.__solution_count += 1
 
 
@@ -40,6 +40,20 @@ def solve_knight_hard(board_size: int) -> int:
 
 
 def solve_knight(board_size: int) -> int:
+    """
+    OR-Tools solution to the N-knights problem. Where N == board_size.
+    This solution utilizes CSP approach using `ortools` package. Here every variable represents a field
+    on a chessboard. It can have two states 0-unoccupied and 1-occupied. The solver tries to find a solution
+    that sum(all_fields) == N, i.e. there are exactly N knights placed. There are also constraints that restrict
+    two fileds having knights if they can attack each other. Above is defined a global constant for a knight's
+    possible moves `_knight_attack_range`. We then add a constraint that two fields within a reach of knights
+    on them cannot both be occupied, i.e. `fields[knight1_position] + fields[knight2_position] < 2`. Note that due
+    to symmetry we only need to consider half of knight's possible attack moves thus instead of defining 8 valid moves
+    we only have 4.
+
+    :param int board_size: size of a chess board
+    :return int: number of ways we can place N (==board_size) knights on a board without them attacking each others
+    """
     # Creates the solver.
     model = cp_model.CpModel()
     total_number_of_fields = board_size**2
@@ -58,7 +72,7 @@ def solve_knight(board_size: int) -> int:
             if 0 <= attack_row < board_size and 0 <= attack_col < board_size:
                 field_to_constraint = row * board_size + col
                 possible_attack_field = attack_row * board_size + attack_col
-                model.Add(sum([fields[field_to_constraint], fields[possible_attack_field]]) < 2)
+                model.Add(fields[field_to_constraint] + fields[possible_attack_field] < 2)
 
     # Solve the model.
     solver = cp_model.CpSolver()
@@ -90,7 +104,7 @@ def solve_bishop(board_size: int) -> int:
         :return float: the result for the left part of the formula
         """
         sum_left = 0
-        for m in range(1, board_size - ind + 1):
+        for m in range(1, board_size - ind + 1):  # pylint: disable=invalid-name
             sum_left += ((-1) ** m * m ** floor(board_size / 2) * (m + 1) ** floor((board_size + 1) / 2)) / (
                 factorial(board_size - ind - m) * factorial(m)
             )
@@ -104,7 +118,7 @@ def solve_bishop(board_size: int) -> int:
         :return float: the result for the right part of the formula
         """
         sum_right = 0
-        for m in range(1, ind + 1):
+        for m in range(1, ind + 1):  # pylint: disable=invalid-name
             sum_right += ((-1) ** m * m ** floor((board_size + 1) / 2) * (m + 1) ** floor(board_size / 2)) / (
                 factorial(ind - m) * factorial(m)
             )
@@ -129,6 +143,12 @@ def solve_queen(board_size: int) -> int:
     """
     OR-Tools solution to the N-queens problem. Where N == board_size.
     This solution utilizes CSP approach using `ortools` package.
+    The solution for the N-queens problem can be found on the official `ortools` website here:
+    https://developers.google.com/optimization/cp/queens.
+    The idea is to have queens bound to every column. That will define our variables.
+    The queens mustn't be in a same column, thus we define a constraint that all values for variables must
+    differ. Then, there are cases with diagonals that are handled by adding addition constraints telling
+    that there mustn't be two queens on a same diagona, whether it's positive or negative.
 
     :param int board_size: size of a chess board
     :return int: number of ways we can place N (==board_size) queens on a board without them attacking each others
