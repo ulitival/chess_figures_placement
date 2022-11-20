@@ -11,9 +11,8 @@ knights_data = [
     (4, 412),
     (5, 9386),
     (6, 257318),
-    # TODO: optimize the solution for 7x7 and 8x8 chessboard, currently CSP isn't able to solve it in reasonable time
-    # (7, 8891854),
-    # (8, 379978716),
+    (7, 8891854),
+    (8, 379978716),
 ]
 
 # http://oeis.org/A002465
