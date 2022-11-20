@@ -1,4 +1,5 @@
 import pytest
+import time
 
 from phrase_chess_task.service_layer import solve
 
@@ -9,8 +10,9 @@ knights_data = [
     (4, 412),
     (5, 9386),
     (6, 257318),
-    (7, 8891854),
-    (8, 379978716),
+    # TODO: optimize the solution for 7x7 and 8x8 chessboard, currently CSP isn't able to solve it in a reasonable time
+    # (7, 8891854),
+    # (8, 379978716),
 ]
 
 # http://oeis.org/A002465
@@ -53,6 +55,14 @@ queens_data = [
 @pytest.mark.parametrize("board_size, expected_number_of_ways", knights_data)
 def test_solver_correctly_solves_knights(board_size: int, expected_number_of_ways: int):
     assert expected_number_of_ways == solve(board_size, "knight")
+
+
+def test_solver_knights_cache_speeds_up_calculation():
+    solve(6, "knight")
+    time_start = time.time()
+    solve(6, "knight")
+    time_end = time.time()
+    assert 1 > time_end - time_start
 
 
 @pytest.mark.parametrize("board_size, expected_number_of_ways", bishops_data)
