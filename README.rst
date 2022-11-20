@@ -21,7 +21,7 @@ You can install a package directly from GitHub by using this command in your ter
 
 ::
 
-    python -m pip install https://
+    python -m pip install https://github.com/ulitival/chess_figures_placement/releases/download/1.0.0/phrase_chess_task-1.0.0.tar.gz
 
 How to run
 ----------
