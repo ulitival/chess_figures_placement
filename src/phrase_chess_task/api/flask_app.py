@@ -24,10 +24,7 @@ app.register_blueprint(api_v1, name="latest")
 @app.errorhandler(HTTPException)
 def error_handler(ex: HTTPException) -> Response:
     """Return JSON instead of HTML for HTTP errors."""
-    response = ex.get_response()
     data = {"code": ex.code, "name": ex.name, "description": ex.description}
     log.warning(f"There was an exception during a request processing: {data}")
 
-    response.data = jsonify(indent=4, sort_keys=True, obj=data)
-    response.mimetype = mimetypes.types_map.get(".json")
-    return response
+    return Response(jsonify(indent=4, sort_keys=True, obj=data), ex.code, mimetype=mimetypes.types_map.get(".json"))
