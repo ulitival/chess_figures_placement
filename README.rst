@@ -8,26 +8,26 @@ Chess figures placement aka N-knights, N-bishops, N-rooks, N-queens problem.
 Known limitations for the current solution.
 -------------------------------------------
 
-For the *N-knight* problem, the CSP solution, unfortunately, cannot find a feasible solution within an acceptable time.
-I run some test and for ``N=7`` and ``N=8`` I wasn't able to get the result in a few hours. Although, we can utilise
-a known values for ``N-knights`` which will increase calculation speed drastically, as every call will be nearly instantaneous.
+For the *N-knight* problem, the CSP solution, unfortunately, cannot find a feasible solution within acceptable time.
+I run some tests and for ``N=7`` and ``N=8`` I wasn't able to get the result in a few hours. Although, known values
+for ``N-knights`` can be utilised, which will increase processing speed drastically, as every call will be nearly instantaneous.
 The On-line encylcopedia of integer sequences has these constants in a following page:
 http://oeis.org/A201540.
 
 How to install
 --------------
 
-You can install a package directly from GitHub by using this command in your terminal:
+You can install a package directly from GitHub by using the below command in your terminal. Please note that ``python >= 3.9`` is required.
 
 ::
 
-    python -m pip install https://github.com/ulitival/chess_figures_placement/releases/download/1.0.0/phrase_chess_task-1.0.0.tar.gz
+    python -m pip install https://github.com/ulitival/chess_figures_placement/releases/download/1.1.0/phrase_chess_task-1.1.0.tar.gz
 
 How to run
 ----------
 
-The application is bundled with a ``Gunicorn`` - python WSGI HTTP Server, thus afer its installation there is
-no need to install additional packages. One can run the application by invoking the following command withing the environment
+The application is bundled with ``Gunicorn`` - python WSGI HTTP Server, thus afer its installation there is
+no need to install additional packages. One can run the application by invoking the following command within the environment
 where the ``phrase_chess_task`` package was installed.
 
 ::
@@ -63,12 +63,11 @@ There are prerequisites in order to be able to get this project to work. Your ma
 - ``Pyenv``: https://github.com/pyenv/pyenv
 
 
-After ``pyenv`` and ``poetry`` are successfully installed you may run `make setup` that will initiate project's setup, i.e. picking up defined in the `.python-verion` file version of python interpreter and as well set up ``poetry`` specific settings.
+After ``pyenv`` and ``poetry`` are successfully installed you may run ``make setup`` that will initiate project's setup,
+i.e. picking up defined in the ``.python-verion`` file version of python interpreter and as well set up ``poetry`` specific settings.
 
 Initiate the project
 --------------------
 
-From within the project's root folder you may try
-``poetry install`` as also defined in the Makefile as ``make init``.
-That should work directly without any issues.
+From within the project's root folder you may try ``poetry install`` or ``make init``.
 From that moment you can freely make changes in the code.
