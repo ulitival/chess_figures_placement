@@ -35,7 +35,7 @@ where the ``phrase_chess_task`` package was installed.
     gunicorn --workers 4 --bind localhost:5050 --timeout 60 phrase_chess_task.api.flask_app:app
 
 This command will spin up ``4`` processes/workers with the ``phrase_chess_task.api.flask_app:app`` Flask app that will accept clients'
-requests and serve responses on `http://localhost:5050/` with a timeout for requests set for 60 seconds.
+requests and serve responses on ``http://localhost:5050/`` with a timeout for requests set for 60 seconds.
 
 You can then test that the API works and accepts requests:
 
