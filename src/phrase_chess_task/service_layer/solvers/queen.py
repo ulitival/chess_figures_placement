@@ -1,12 +1,15 @@
+# pylint: disable=duplicate-code
 """N-queens solver.
 
 Based on CSP approach.
 """
 from ortools.sat.python import cp_model
 
-from phrase_chess_task.service_layer import log
+from phrase_chess_task import logging
 
 from .common import ORToolsSolutionPrinter
+
+log = logging.getLogger(__name__)
 
 
 def solve_queen(board_size: int) -> int:
