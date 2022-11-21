@@ -1,4 +1,3 @@
-# pylint: disable=wrong-import-position
 """
 The package exposes the solve function that calculate the number of ways N chess piece
 figures can be placed on a chess board of size N x N.
@@ -6,10 +5,6 @@ figures can be placed on a chess board of size N x N.
 
 import functools
 from typing import Literal
-
-from phrase_chess_task import logging
-
-log = logging.getLogger("phrase_chess_task.service_layer.solver")
 
 from phrase_chess_task.service_layer.solvers import chess_solvers as solvers
 

@@ -23,9 +23,9 @@ def resp(content: str | bytes, status: int = HTTPStatus.OK, mimetype: str = "app
 
 def expect(schema: Schema):
     """The helper function that serves as a decorator for Flask's endpoints. It utilizes
-    voluptuous' Schema validator.
+    voluptuous' Schema validator to validate incoming requests.
 
-    :param Schema schema: an instal of a Schema class with defined validations
+    :param Schema schema: an instance of a Schema class with defined validations
     """
 
     def decorator(func):

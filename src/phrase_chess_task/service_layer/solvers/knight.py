@@ -1,3 +1,4 @@
+# pylint: disable=duplicate-code
 """N-knights solver.
 
 Based on CSP approach. The solver utilizes a combinaton of CSP and hard-coded values,
@@ -8,9 +9,11 @@ import itertools
 
 from ortools.sat.python import cp_model
 
-from phrase_chess_task.service_layer import log
+from phrase_chess_task import logging
 
 from .common import ORToolsSolutionPrinter
+
+log = logging.getLogger(__name__)
 
 # http://oeis.org/A201540
 KNIGHT = [1, 6, 36, 412, 9386, 257318, 8891854, 379978716]

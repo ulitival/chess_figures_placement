@@ -6,9 +6,9 @@ Bishop's and rook's solver use a standardised formulas that were discovered by V
 The queen's and knight's solver are using CSP approach (CP-SAT) as there isn't a known mathematical formula that
 return the number of ways they can be placed on a board.
 """
-from .knight import solve_knight
 from .bishop import solve_bishop
-from .rook import solve_rook
+from .knight import solve_knight
 from .queen import solve_queen
+from .rook import solve_rook
 
 chess_solvers = {"knight": solve_knight, "bishop": solve_bishop, "rook": solve_rook, "queen": solve_queen}

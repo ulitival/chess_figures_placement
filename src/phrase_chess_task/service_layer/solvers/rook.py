@@ -5,7 +5,9 @@ of size ``N x N`` is given as a factorial of N.
 """
 from math import factorial
 
-from phrase_chess_task.service_layer import log
+from phrase_chess_task import logging
+
+log = logging.getLogger(__name__)
 
 
 def solve_rook(board_size: int) -> int:
