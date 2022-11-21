@@ -17,7 +17,7 @@ http://oeis.org/A201540.
 How to install
 --------------
 
-You can install a package directly from GitHub by using the below command in your terminal. Please note that ``python >= 3.9`` is required.
+You can install a package directly from GitHub by using the below command in your terminal. Please note that ``python >= 3.10`` is required.
 
 ::
 
